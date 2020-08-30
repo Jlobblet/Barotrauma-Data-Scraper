@@ -5,12 +5,12 @@ open System.Xml.Linq
 open FSharp.Data
 open Barotrauma_Data_Scraper.Constants
 
-// Type provider for the Vanilla 0.9.xml
-// Used to retrieve list of items etc.
+/// Type provider for the Vanilla 0.9.xml
+/// Used to retrieve list of items etc.
 type VanillaPackage = XmlProvider<ContentPackage>
 
-// The English texts file
-// Used to look up names for items from identifiers
+/// The English texts file
+/// Used to look up names for items from identifiers
 [<Literal>]
 let EnglishTextFile =
     ContentDirectory
@@ -27,7 +27,7 @@ let tryGetNameFromIdentifier (identifier: string) =
          |> Seq.tryFind (fun e -> (e.Name.LocalName.Contains(identifier)))
          |> Option.map (fun e -> e.Value))
 
-// A file that contains a bunch of items for the type provider.
+/// A file that contains a bunch of items for the type provider.
 [<Literal>]
 let ExampleItemFile =
     ContentDirectory
@@ -35,5 +35,5 @@ let ExampleItemFile =
     + @"\Weapons"
     + @"\weapons.xml"
 
-// Type provider for a file containing items.
+/// Type provider for a file containing items.
 type ItemFile = XmlProvider<ExampleItemFile>

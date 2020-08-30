@@ -2,19 +2,19 @@ module Barotrauma_Data_Scraper.Constants
 
 open System.IO
 
-// Shame this can't be a compile time constant.
+/// Shame this can't be a compile time constant.
 let (+/) path1 path2 = Path.Combine(path1, path2)
 
-// Directory where barotrauma is installed.
+/// Directory where barotrauma is installed.
 [<Literal>]
 let BaroDirectory =
     @"C:\Program Files (x86)\Steam\steamapps\common\Barotrauma"
 
-// Content directory.
+/// Content directory.
 [<Literal>]
 let ContentDirectory = BaroDirectory + @"\Content"
 
-// Vanilla 0.9.xml content package.
+/// Vanilla 0.9.xml content package.
 [<Literal>]
 let ContentPackage =
     BaroDirectory
@@ -22,7 +22,7 @@ let ContentPackage =
     + @"\ContentPackages"
     + @"\Vanilla 0.9.xml"
 
-// Order to sort item prices by
+/// Order to sort item prices by
 let LocationTypeOrder =
     [ "research", 0
       "military", 1

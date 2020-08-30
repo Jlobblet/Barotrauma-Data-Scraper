@@ -3,14 +3,15 @@ module Barotrauma_Data_Scraper.ItemInfoBox
 open Barotrauma_Data_Scraper.Constants
 open Barotrauma_Data_Scraper.Providers
 
-// key -> value -> | key = value
+/// key -> value -> "| key = value"
 let private InfoBoxAttribute = sprintf "| %s = %s"
 
-// item -> {{Hyperlink|item|}}
+/// item -> "{{Hyperlink|item}}"
 let private Hyperlink = sprintf "{{Hyperlink|%s}}"
+/// item -> "{{Hyperlink|item name}}"
 let private IdHyperlink = tryGetNameFromIdentifier >> Hyperlink
 
-// Information about an item's fabrication recipe.
+/// Information about an item's fabrication recipe.
 let private FabricationInfo (item: ItemFile.Item) =
     item.Fabricate
     |> Option.map (fun f ->
@@ -43,7 +44,7 @@ let private FabricationInfo (item: ItemFile.Item) =
         |> List.choose (fun s -> s)
         |> String.concat "\n")
 
-// Information about an item's deconstructor recipe.
+/// Information about an item's deconstructor recipe.
 let private DeconstructInfo (item: ItemFile.Item) =
     item.Deconstruct
     |> Option.map (fun d ->
@@ -66,7 +67,7 @@ let private DeconstructInfo (item: ItemFile.Item) =
         |> List.choose (fun s -> s)
         |> String.concat "\n")
 
-// Information about an item's price.
+/// Information about an item's price.
 let private PriceInfo (item: ItemFile.Item) =
     item.Price
     |> Option.map (fun p ->
@@ -81,6 +82,7 @@ let private PriceInfo (item: ItemFile.Item) =
              |> Array.map (fun (_, p) -> p |> round |> string)
              |> String.concat "/"))
 
+/// Produce an item WikiBox for a given item
 let ProduceItemBox (item: ItemFile.Item) =
     [ Some "{{Items infobox"
       PriceInfo item

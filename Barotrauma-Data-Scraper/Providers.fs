@@ -21,11 +21,11 @@ let EnglishTextFile =
 let private TextDoc = XDocument.Load(EnglishTextFile)
 
 let tryGetNameFromIdentifier (identifier: string) =
-    match (TextDoc.Root.Elements()
-           |> Seq.tryFind (fun e -> (e.Name.LocalName.Contains(identifier)))
-           |> Option.map (fun e -> e.Value)) with
-    | Some v -> v
-    | None -> identifier
+    Option.defaultValue
+        identifier
+        (TextDoc.Root.Elements()
+         |> Seq.tryFind (fun e -> (e.Name.LocalName.Contains(identifier)))
+         |> Option.map (fun e -> e.Value))
 
 // A file that contains a bunch of items for the type provider.
 [<Literal>]

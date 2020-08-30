@@ -8,6 +8,7 @@ let private InfoBoxAttribute = sprintf "| %s = %s"
 
 // item -> {{Hyperlink|item|}}
 let private Hyperlink = sprintf "{{Hyperlink|%s}}"
+let private IdHyperlink = tryGetNameFromIdentifier >> Hyperlink
 
 // Information about an item's fabrication recipe.
 let private FabricationInfo (item: ItemFile.Item) =
@@ -35,7 +36,9 @@ let private FabricationInfo (item: ItemFile.Item) =
                    // Some have items, some have requireditems...
                    (Array.concat [ (f.Items |> Array.map (fun i -> i.Identifier))
                                    (f.RequiredItems
-                                    |> Array.map (fun i -> i.Identifier |> tryGetNameFromIdentifier |> Hyperlink)) ]
+                                    |> Array.map (fun i ->
+                                        i.Identifier
+                                        |> IdHyperlink)) ]
                     |> String.concat "\n")) ]
         |> List.choose (fun s -> s)
         |> String.concat "\n")
@@ -56,7 +59,9 @@ let private DeconstructInfo (item: ItemFile.Item) =
               (InfoBoxAttribute
                   "deconstructormaterials"
                    (d.Items
-                    |> Array.map (fun i -> i.Identifier |> tryGetNameFromIdentifier |> Hyperlink)
+                    |> Array.map (fun i ->
+                        i.Identifier
+                        |> IdHyperlink)
                     |> String.concat "\n")) ]
         |> List.choose (fun s -> s)
         |> String.concat "\n")

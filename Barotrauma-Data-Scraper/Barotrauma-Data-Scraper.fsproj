@@ -9,6 +9,7 @@
   <ItemGroup>
     <Compile Include="Constants.fs" />
     <Compile Include="Providers.fs" />
+    <Compile Include="Io.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30310.162
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Barotrauma-Data-Scraper", "Barotrauma-Data-Scraper\Barotrauma-Data-Scraper.fsproj", "{8BF497F7-9BB8-4576-A6C6-0E28CDEEBE0C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8BF497F7-9BB8-4576-A6C6-0E28CDEEBE0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BF497F7-9BB8-4576-A6C6-0E28CDEEBE0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BF497F7-9BB8-4576-A6C6-0E28CDEEBE0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BF497F7-9BB8-4576-A6C6-0E28CDEEBE0C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {63A8A09A-661A-40AA-8678-B58730ED2E1E}
+	EndGlobalSection
+EndGlobal

@@ -85,6 +85,7 @@ let private PriceInfo (item: ItemFile.Item) =
 /// Produce an item WikiBox for a given item
 let ProduceItemBox (item: ItemFile.Item) =
     [ Some "{{Items infobox"
+      Some (InfoBoxAttribute "name" (tryGetNameFromIdentifier item.Identifier))
       PriceInfo item
       FabricationInfo item
       DeconstructInfo item

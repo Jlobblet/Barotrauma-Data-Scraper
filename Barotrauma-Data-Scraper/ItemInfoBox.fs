@@ -40,9 +40,31 @@ let private FabricationInfo (item: ItemFile.Item) =
         |> List.choose (fun s -> s)
         |> String.concat "\n")
 
+// Information about an item's deconstructor recipe.
+let private DeconstructInfo (item: ItemFile.Item) =
+    item.Deconstruct
+    |> Option.map (fun d ->
+        [
+          // Item can be deconstructed
+          // | deconstructor = yes
+          Some(InfoBoxAttribute "deconstructor" "yes")
+          // Time to deconstruct
+          // | deconstructortime = 10
+          Some(InfoBoxAttribute "deconstructortime" (d.Time |> string))
+          // Items deconstructed into
+          Some
+              (InfoBoxAttribute
+                  "deconstructormaterials"
+                   (d.Items
+                    |> Array.map (fun i -> i.Identifier |> tryGetNameFromIdentifier |> Hyperlink)
+                    |> String.concat "\n")) ]
+        |> List.choose (fun s -> s)
+        |> String.concat "\n")
+
 let ProduceItemBox (item: ItemFile.Item) =
     [ Some "{{Items infobox"
       FabricationInfo item
+      DeconstructInfo item
       Some "}}" ]
     |> List.choose (fun s -> s)
     |> String.concat "\n"

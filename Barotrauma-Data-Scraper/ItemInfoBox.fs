@@ -61,8 +61,24 @@ let private DeconstructInfo (item: ItemFile.Item) =
         |> List.choose (fun s -> s)
         |> String.concat "\n")
 
+// Information about an item's price.
+let private PriceInfo (item: ItemFile.Item) =
+    item.Price
+    |> Option.map (fun p ->
+        InfoBoxAttribute
+            "price"
+            (p.Prices
+             // Multiple base price by multiplier for price
+             |> Array.map (fun p2 -> (p2.Locationtype, p2.Multiplier * (p.Baseprice |> decimal)))
+             // Sort in the order research/military/city/outpost/mine
+             |> Array.sortBy (fun (s, _) -> LocationTypeOrder.Item s)
+             // Get just the price instead of the location name and price
+             |> Array.map (fun (_, p) -> p |> round |> string)
+             |> String.concat "/"))
+
 let ProduceItemBox (item: ItemFile.Item) =
     [ Some "{{Items infobox"
+      PriceInfo item
       FabricationInfo item
       DeconstructInfo item
       Some "}}" ]
